@@ -5,6 +5,7 @@ import com.weslley.demo_crud.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.bind.annotation.*;
+
 import java.util.List;
 
 @RestController
@@ -22,4 +23,15 @@ public class UserController {
     public List<UserModel> findAll() {
         return userService.findAll();
     }
+
+    @GetMapping("/{id}")
+    public UserModel findById(@PathVariable Long id) {
+        return userService.findById(id);
+    }
+
+    @DeleteMapping("/{id}")
+    public void deleteById(@PathVariable Long id) {
+        userService.deleteById(id);
+    }
+
 }
