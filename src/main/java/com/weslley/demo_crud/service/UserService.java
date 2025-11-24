@@ -1,10 +1,12 @@
 package com.weslley.demo_crud.service;
+import com.weslley.demo_crud.dto.user.UserCreateDTO;
 import com.weslley.demo_crud.model.UserModel;
 import com.weslley.demo_crud.repository.UserRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.web.server.ResponseStatusException;
 import org.springframework.http.HttpStatus;
+import org.springframework.beans.BeanUtils;
 
 import java.util.List;
 import java.util.Optional;
@@ -29,11 +31,16 @@ public class UserService {
         return user.orElseThrow(() -> new ResponseStatusException(HttpStatus.NOT_FOUND, "Usuário não encontrado."));
     }
 
+    public UserModel update(Long id, UserCreateDTO userDto) {
+        UserModel user = userRepository.findById(id).orElseThrow(() -> new ResponseStatusException(HttpStatus.NOT_FOUND, "Usuário não encontrado."));
+        BeanUtils.copyProperties(userDto, user, "id");
+        return userRepository.save(user);
+    }
+
     public void  deleteById(Long id){
         Optional<UserModel> user = userRepository.findById(id);
         user.orElseThrow(() -> new ResponseStatusException(HttpStatus.NOT_FOUND, "Usuário não encontrado."));
         userRepository.deleteById(id);
     }
-
 
 }
