@@ -3,8 +3,11 @@ import com.weslley.demo_crud.dto.user.UserCreateDTO;
 import com.weslley.demo_crud.model.UserModel;
 import com.weslley.demo_crud.repository.UserRepository;
 import com.weslley.demo_crud.utils.UpdateUtil;
+import com.weslley.demo_crud.infra.security.SecurityConfig;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
+import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 import org.springframework.web.server.ResponseStatusException;
 import org.springframework.http.HttpStatus;
@@ -14,14 +17,17 @@ import java.util.List;
 import java.util.Optional;
 
 
-
 @Service
 public class UserService {
 
     @Autowired
     private UserRepository userRepository;
+    @Autowired
+    private PasswordEncoder passwordEncoder;
+
 
     public UserModel save(UserModel user){
+        user.setPassword(passwordEncoder.encode(user.getPassword()));
         return userRepository.save(user);
     }
 
