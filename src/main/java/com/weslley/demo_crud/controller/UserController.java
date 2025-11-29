@@ -18,9 +18,7 @@ public class UserController {
     @PostMapping
     public UserModel create(@RequestBody UserCreateDTO userDto) {
         UserModel userModel = new UserModel();
-
         BeanUtils.copyProperties(userDto, userModel);
-
         return userService.save(userModel);
     }
 
