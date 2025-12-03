@@ -20,7 +20,7 @@ public class UserController {
     public UserResponseDTO create(@RequestBody UserCreateDTO userDto) {
         UserModel userModel = new UserModel();
         BeanUtils.copyProperties(userDto, userModel);
-        return UserResponseDTO.from(userModel);
+        return UserResponseDTO.from(userService.save(userModel));
     }
 
     @GetMapping

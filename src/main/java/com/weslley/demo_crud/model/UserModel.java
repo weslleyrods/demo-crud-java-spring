@@ -14,6 +14,7 @@ public class UserModel implements UserDetails {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long Id ;
     private String name;
+    @Column(unique = true)
     private String email;
     private String password;
 

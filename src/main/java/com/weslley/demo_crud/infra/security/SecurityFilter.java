@@ -30,11 +30,11 @@ public class SecurityFilter extends OncePerRequestFilter {
             FilterChain filterChain
     ) throws ServletException, IOException {
         var token = this.recoverToken(request);
-        if(token!=null){
+        if (token != null) {
             var login = tokenService.validateToken(token);
-            if(login!=null && !login.isEmpty()){
+            if (login != null && !login.isEmpty()) {
                 UserDetails user = userRepository.findByEmail(login);
-                var authentication =  new UsernamePasswordAuthenticationToken(user, login, user.getAuthorities());
+                var authentication = new UsernamePasswordAuthenticationToken(user, login, user.getAuthorities());
                 SecurityContextHolder.getContext().setAuthentication(authentication);
 
             }
