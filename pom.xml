@@ -15,10 +15,10 @@
 		<relativePath/> <!-- lookup parent from repository -->
 	</parent>
 	<groupId>com.weslley</groupId>
-	<artifactId>demo-crud</artifactId>
+	<artifactId>spring-secure-identity-api</artifactId>
 	<version>0.0.1-SNAPSHOT</version>
-	<name>demo-crud</name>
-	<description>Demo project for Spring Boot</description>
+	<name>Spring Secure Identity API</name>
+	<description>API de Gestão de Identidade com Spring Security</description>
 	<url/>
 	<licenses>
 		<license/>

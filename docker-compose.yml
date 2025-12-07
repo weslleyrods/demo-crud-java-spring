@@ -1,7 +1,7 @@
 services:
   app:
     build: .
-    container_name: demo-crud
+    container_name: spring-secure-identity
     ports:
       - "8081:8081"
     environment:
@@ -15,7 +15,7 @@ services:
 
   db:
     image: mysql:8.0
-    container_name: demo-crud-db
+    container_name: spring-secure-identity-db
     environment:
       - MYSQL_DATABASE=${MYSQL_DATABASE}
       - MYSQL_ROOT_PASSWORD=${MYSQL_ROOT_PASSWORD}

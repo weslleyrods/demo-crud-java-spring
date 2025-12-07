@@ -1,4 +1,4 @@
-# Demo CRUD API
+# Spring Secure Identity API
 
 ## Resumo
 API RESTful robusta para gestão de usuários, focada em segurança e boas práticas de desenvolvimento. A aplicação permite o ciclo completo de gerenciamento (CRUD) com controle de acesso baseado em papéis (RBAC).
@@ -14,6 +14,7 @@ O sistema diferencia usuários comuns (**USER**) de administradores (**ADMIN**),
 * **ORM:** Hibernate / Spring Data JPA
 * **Infraestrutura:** Docker & Docker Compose
 * **Ferramentas:** Lombok, Maven
+* **Documentação:** SpringDoc OpenAPI (Swagger UI)
 
 ## Estudos Aplicados
 
@@ -24,6 +25,18 @@ Este projeto foi desenvolvido com foco na aplicação de conceitos avançados de
 * **Gestão de Segredos:** Uso de variáveis de ambiente e placeholders (`${...}`) para não expor credenciais sensíveis no código-fonte.
 * **Containerização:** Configuração de ambiente de desenvolvimento portátil usando Docker Compose (Aplicação + Banco).
 * **Arquitetura:** Separação de responsabilidades (Controller, Service, Repository, DTOs e Entities).
+
+## Documentação Interativa
+
+O projeto utiliza **Swagger UI** para documentação e teste automático dos endpoints.
+Após subir a aplicação, acesse:
+
+👉 **http://localhost:8081/swagger-ui.html**
+
+Lá você poderá:
+* Visualizar todos os endpoints disponíveis.
+* Testar requisições (Login, Cadastro, Refresh) diretamente pelo navegador.
+* Autenticar-se usando o botão **Authorize** (copie o token gerado no endpoint de login).
 
 ## Instalação e Execução
 
@@ -36,7 +49,7 @@ Por segurança, o projeto não compartilha senhas reais. Crie um arquivo `.env` 
 
 ```properties
 # Configuração do Banco de Dados
-MYSQL_DATABASE=demo_crud_db
+MYSQL_DATABASE=ssi_db
 MYSQL_ROOT_USERNAME=root
 MYSQL_ROOT_PASSWORD=sua_senha_forte_aqui
 
