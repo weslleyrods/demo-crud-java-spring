@@ -1,10 +1,11 @@
 # Spring Secure Identity API
 
 ## Resumo
-API RESTful robusta para gestão de usuários, focada em segurança e boas práticas de desenvolvimento. A aplicação permite o ciclo completo de gerenciamento (CRUD) com controle de acesso baseado em papéis (RBAC).
+API RESTful robusta para gestão de usuários, focada em segurança e boas práticas de desenvolvimento. 
+A aplicação permite o ciclo completo de gerenciamento (CRUD) com controle de acesso baseado em papéis (RBAC).
 
 O sistema diferencia usuários comuns (**USER**) de administradores (**ADMIN**), onde apenas administradores possuem 
-privilégios para remover usuários do sistema. 
+privilégios para remover usuários do sistema e alterar o privilégio de permissão. 
 A autenticação é via JWT (JSON Web Token) com estratégia de **Refresh Token** persistido em banco de dados para maior segurança.
 
 ## Tecnologias Utilizadas
