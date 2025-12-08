@@ -20,7 +20,7 @@ public class UserModel implements UserDetails {
     private String email;
     private String password;
     @Enumerated(EnumType.STRING)
-    private UserRole role;
+    private UserRole role = UserRole.USER;
 
 
     public Long getId() {

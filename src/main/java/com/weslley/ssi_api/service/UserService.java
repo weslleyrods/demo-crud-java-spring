@@ -1,5 +1,6 @@
 package com.weslley.ssi_api.service;
 import com.weslley.ssi_api.dto.user.UserCreateDTO;
+import com.weslley.ssi_api.dto.user.UserRoleDTO;
 import com.weslley.ssi_api.model.UserModel;
 import com.weslley.ssi_api.repository.UserRepository;
 import com.weslley.ssi_api.utils.UpdateUtil;
@@ -49,6 +50,14 @@ public class UserService {
             () -> new ResponseStatusException(HttpStatus.NOT_FOUND, "Usuário não encontrado.")
         );
         UpdateUtil.copyNonNullProperties(userDto, user);
+        return userRepository.save(user);
+    }
+
+    public UserModel changeRole (Long id, UserRoleDTO roleDTO) {
+        UserModel user = userRepository.findById(id).orElseThrow(
+                () -> new ResponseStatusException(HttpStatus.NOT_FOUND, "Usuário não encontrado.")
+        );
+        UpdateUtil.copyNonNullProperties(roleDTO, user);
         return userRepository.save(user);
     }
 

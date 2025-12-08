@@ -9,6 +9,10 @@ services:
       - SPRING_DATASOURCE_USERNAME=${MYSQL_ROOT_USERNAME}
       - SPRING_DATASOURCE_PASSWORD=${MYSQL_ROOT_PASSWORD}
       - API_SECURITY_TOKEN_SECRET=${JWT_SECRET}
+
+      - ADMIN_EMAIL=${ADMIN_EMAIL}
+      - ADMIN_PASSWORD=${ADMIN_PASSWORD}
+      - ADMIN_CREATE=${ADMIN_CREATE}
     depends_on:
       db:
         condition: service_healthy

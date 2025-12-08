@@ -20,5 +20,4 @@ public class UserCreateDTO {
     @Size(min = 3, message = "A senha deve ter no mínimo 3 caracteres")
     private String password;
 
-    private UserRole role = UserRole.USER;
 }

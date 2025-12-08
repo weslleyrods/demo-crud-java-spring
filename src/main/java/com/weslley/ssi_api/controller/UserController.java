@@ -1,5 +1,6 @@
 package com.weslley.ssi_api.controller;
 
+import com.weslley.ssi_api.dto.user.UserRoleDTO;
 import com.weslley.ssi_api.model.UserModel;
 import com.weslley.ssi_api.service.UserService;
 import com.weslley.ssi_api.dto.user.UserResponseDTO;
@@ -43,6 +44,11 @@ public class UserController {
     @PatchMapping("/{id}")
     public UserResponseDTO partialUpdate (@PathVariable Long id, @RequestBody UserCreateDTO userDto) {
         return UserResponseDTO.from(userService.partialUpdate(id, userDto));
+    }
+
+    @PatchMapping("/{id}/role")
+    public UserResponseDTO changeRole (@PathVariable Long id, @RequestBody UserRoleDTO roleDTO) {
+        return UserResponseDTO.from(userService.changeRole(id, roleDTO));
     }
 
     @DeleteMapping("/{id}")
