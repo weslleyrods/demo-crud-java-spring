@@ -47,16 +47,12 @@ public class TokenService {
     }
 
     public String validateToken(String token) {
-        try{
-            Algorithm algorithm = Algorithm.HMAC256(secret);
-            return JWT.require(algorithm)
-                    .withIssuer("demo-crud-api")
-                    .build()
-                    .verify(token)
-                    .getSubject();
-        }catch (Exception e){
-            return e.getMessage();
-        }
+        Algorithm algorithm = Algorithm.HMAC256(secret);
+        return JWT.require(algorithm)
+                .withIssuer("demo-crud-api")
+                .build()
+                .verify(token)
+                .getSubject();
     }
 
 

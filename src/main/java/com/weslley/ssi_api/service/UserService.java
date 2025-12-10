@@ -1,6 +1,8 @@
 package com.weslley.ssi_api.service;
 import com.weslley.ssi_api.dto.user.UserCreateDTO;
 import com.weslley.ssi_api.dto.user.UserRoleDTO;
+import com.weslley.ssi_api.exception.UserAlreadyExistsException;
+import com.weslley.ssi_api.exception.UserNotFoundException;
 import com.weslley.ssi_api.model.UserModel;
 import com.weslley.ssi_api.repository.UserRepository;
 import com.weslley.ssi_api.utils.UpdateUtil;
@@ -26,8 +28,10 @@ public class UserService {
 
 
     public UserModel save(UserModel user){
-        user.setPassword(passwordEncoder.encode(user.getPassword()));
-        return userRepository.save(user);
+       var userExists = userRepository.findByEmail(user.getEmail());
+       if (userExists != null) throw new UserAlreadyExistsException("Email already exists");
+       user.setPassword(passwordEncoder.encode(user.getPassword()));
+       return userRepository.save(user);
     }
 
     public List<UserModel> findAll(){
@@ -36,18 +40,18 @@ public class UserService {
 
     public UserModel findById(Long id){
         Optional<UserModel> user = userRepository.findById(id);
-        return user.orElseThrow(() -> new ResponseStatusException(HttpStatus.NOT_FOUND, "Usuário não encontrado."));
+        return user.orElseThrow(() -> new UserNotFoundException("User not found"));
     }
 
     public UserModel update(Long id, UserCreateDTO userDto) {
-        UserModel user = userRepository.findById(id).orElseThrow(() -> new ResponseStatusException(HttpStatus.NOT_FOUND, "Usuário não encontrado."));
+        UserModel user = userRepository.findById(id).orElseThrow(() ->new UserNotFoundException("User not found"));
         BeanUtils.copyProperties(userDto, user, "id");
         return userRepository.save(user);
     }
 
     public UserModel partialUpdate(Long id, UserCreateDTO userDto) {
         UserModel user = userRepository.findById(id).orElseThrow(
-            () -> new ResponseStatusException(HttpStatus.NOT_FOUND, "Usuário não encontrado.")
+            () -> new UserNotFoundException("User not found")
         );
         UpdateUtil.copyNonNullProperties(userDto, user);
         return userRepository.save(user);
